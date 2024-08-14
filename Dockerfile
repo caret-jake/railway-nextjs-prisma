@@ -13,8 +13,8 @@ RUN yarn install --frozen-lockfile
 # Copy the rest of the application code
 COPY . .
 
-# # Run Prisma migrations
-# RUN yarn migrate:deploy
+# Generate Prisma client and run migrations
+RUN sh -c "sleep 4 && yarn prisma generate && sleep 4 && yarn migrate:deploy"
 
 # Build the Next.js application
 RUN yarn build
